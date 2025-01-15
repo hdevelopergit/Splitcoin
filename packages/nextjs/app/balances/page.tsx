@@ -38,7 +38,6 @@ const Balances: NextPage = () => {
 
   function handleOption(item: string) {
     const index = item.indexOf("-") + 2;
-    console.log("index: ", index);
     return item.slice(index);
     // item
   }

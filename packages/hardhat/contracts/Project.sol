@@ -98,14 +98,11 @@ contract Project {
 		bool _selectedProject,
 		uint256 _i
 	) public view returns (SplitCoin.TransferMov[] memory) {
-		console.log("selected project", _selectedProject);
-		console.log("i", _i);
 		require(_selectedProject == true, "Project not selected");
 		return projectArr[_i].splitCoin.getTransfers();
 	}
 
 	function calculateTransfers(uint256 _i) public {
-        console.log("_i",_i);
 		projectArr[_i].splitCoin.calculateTransfers();
 	}
 

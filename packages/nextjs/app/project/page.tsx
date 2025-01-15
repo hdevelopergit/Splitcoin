@@ -3,7 +3,6 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-// import { globalData } from "~~/components/GlobalVariable";
 import { globalData } from "~~/components/GlobalVariable";
 import { InputBase } from "~~/components/scaffold-eth";
 import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
@@ -30,7 +29,6 @@ const Project: NextPage = () => {
 
   function handleOption(item: string) {
     const index = item.indexOf("-") + 2;
-    console.log("index: ", index);
     return item.slice(index);
     // item
   }

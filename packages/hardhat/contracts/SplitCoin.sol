@@ -37,7 +37,6 @@ contract SplitCoin {
 	bool contractClosed = false;
 
 	constructor(address _initialOwner) {
-		console.log("initial owner", _initialOwner);
 		owner = _initialOwner;
 
 		expender.push(_initialOwner);
@@ -58,7 +57,6 @@ contract SplitCoin {
 	function wipe2balances() private returns (bool) {
 		bool transferFlag = false;
 
-		console.log("wipe2balances");
 		for (uint256 i = 0; i < expender.length - 1; i++) {
 			for (uint256 j = i + 1; j < expender.length; j++) {
 				if (balances[expender[i]] != 0) {
@@ -98,22 +96,19 @@ contract SplitCoin {
 
 		bool transferFlag = false;
 
-		console.log("wipeAnyBalance");
 		for (uint256 i = 0; i < expender.length - 1; i++) {
-			console.log("i: ", i);
 			for (uint256 j = i + 1; j < expender.length; j++) {
-				console.log("j: ", j);
+
 				if (
 					(balances[expender[i]] > 0 && balances[expender[j]] < 0) ||
 					(balances[expender[i]] < 0 && balances[expender[j]] > 0)
 				) {
-					console.log("1er if");
 					tmp_bal_i = balances[expender[i]];
 					tmp_bal_j = balances[expender[j]];
 					if (tmp_bal_i < 0) tmp_bal_i = tmp_bal_i * -1;
 					if (tmp_bal_j < 0) tmp_bal_j = tmp_bal_j * -1;
 					if (balances[expender[i]] < 0 && tmp_bal_i < tmp_bal_j) {
-						console.log("2do if");
+
 						tmp_balance = balances[expender[i]] * -1;
 						transfer[expender[i]][expender[j]] = uint256(
 							tmp_balance
@@ -126,7 +121,7 @@ contract SplitCoin {
 						transferFlag = true;
 					}
 					if (balances[expender[j]] < 0 && tmp_bal_j < tmp_bal_i) {
-						console.log("3er if");
+
 						tmp_balance = balances[expender[j]] * -1;
 						transfer[expender[j]][expender[i]] = uint256(
 							tmp_balance
@@ -150,22 +145,20 @@ contract SplitCoin {
 		int256 tmp_bal_j;
 		bool transferFlag = false;
 
-		console.log("wipeRemainingBalance");
 		for (uint256 i = 0; i < expender.length - 1; i++) {
-			console.log("i: ", i);
+
 			for (uint256 j = i + 1; j < expender.length; j++) {
-				console.log("j: ", j);
+
 				if (
 					(balances[expender[i]] > 0 && balances[expender[j]] < 0) ||
 					(balances[expender[i]] < 0 && balances[expender[j]] > 0)
 				) {
-					console.log("1er if");
+
 					tmp_bal_i = balances[expender[i]];
 					tmp_bal_j = balances[expender[j]];
 					if (tmp_bal_i < 0) tmp_bal_i = tmp_bal_i * -1;
 					if (tmp_bal_j < 0) tmp_bal_j = tmp_bal_j * -1;
 					if (balances[expender[i]] < 0) {
-						console.log("2do if");
 
 						transfer[expender[i]][expender[j]] = uint256(
 							balances[expender[j]]
@@ -178,7 +171,7 @@ contract SplitCoin {
 						transferFlag = true;
 					}
 					if (balances[expender[j]] < 0) {
-						console.log("3er if");
+
 						transfer[expender[j]][expender[i]] = uint256(
 							balances[expender[i]]
 						);
@@ -233,7 +226,7 @@ contract SplitCoin {
 		for (uint256 i = 0; i < expender.length - 1; i++) {
 			for (uint256 j = i + 1; j < expender.length; j++) {
 				if (transfer[expender[i]][expender[j]] > 0) {
-					console.log("add element i");
+
 					tmpTransfers[k] = TransferMov(
 						expender[i],
 						expender[j],
@@ -242,7 +235,7 @@ contract SplitCoin {
 					k++;
 				}
 				if (transfer[expender[j]][expender[i]] > 0) {
-					console.log("add element j");
+
 					tmpTransfers[k] = TransferMov(
 						expender[j],
 						expender[i],
